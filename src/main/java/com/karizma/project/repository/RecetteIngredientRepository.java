@@ -13,8 +13,10 @@ import com.karizma.project.model.RecetteIngredient;
 
 @Repository
 public interface RecetteIngredientRepository extends JpaRepository<RecetteIngredient, Long> {
+	@Query("SELECT ri FROM RecetteIngredient ri WHERE ri.recette = :recette")
 	List<RecetteIngredient> findByRecette(Recette recette);
 
+	@Query("SELECT ri FROM RecetteIngredient ri WHERE ri.ingredient = :ingredient")
 	List<RecetteIngredient> findByIngredient(Ingredient ingredient);
 
 	@Query("Select ri from RecetteIngredient ri where ri.id=:id")

@@ -7,7 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
@@ -77,8 +79,9 @@ public class Recette {
 		this.ingredients = ingredients;
 	}
 
-	public Recette(int id, String nom, String photo, int duree, List<Etape> etapes,
-			List<RecetteIngredient> ingredients) {
+	public Recette(int id, @NotBlank(message = "Le nom de la recette ne peut pas être vide") String nom, String photo,
+			@Min(value = 1, message = "La durée de la recette doit être d'au moins 1 minute") int duree,
+			List<Etape> etapes, List<RecetteIngredient> ingredients) {
 		super();
 		this.id = id;
 		this.nom = nom;

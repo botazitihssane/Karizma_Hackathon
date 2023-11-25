@@ -15,8 +15,10 @@ public interface RecetteRepository extends JpaRepository<Recette, Long> {
 	@Query("Select r from Recette r where r.id=:id")
 	Recette getRecetteById(@Param("id") int id);
 
+	@Query("Select r from Recette r where r.nom=:nom")
 	List<Recette> findByNom(String nom);
 
+	@Query("SELECT r FROM Recette r WHERE r.duree <= :duree")
 	List<Recette> findByDuree(int duree);
 
 	@Query("SELECT DISTINCT r FROM Recette r JOIN r.ingredients i WHERE i IN :ingredients")
